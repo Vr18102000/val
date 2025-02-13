@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kiss Day - Valentine Week</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Kiss Day Theme */
+    body {
+      background: linear-gradient(45deg, #ff1493, #ff69b4); /* Romantic pink gradient */
+    }
+
+    /* Lip Print Animation */
+    .lip-print {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: url('img/heart.png') no-repeat;
+      background-size: cover;
+      opacity: 0;
+      animation: floatLips 6s linear infinite;
+    }
+
+    @keyframes floatLips {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    /* Kiss Button */
+    .kiss-btn {
+      background: linear-gradient(45deg, #ff1493, #ff69b4);
+      border: none;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      color: white;
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+    }
+
+    .kiss-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .lip-print {
+        width: 30px;
+        height: 30px;
+      }
+      .kiss-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Dots -->
+  <div class="day-progress">
+    <div class="progress-dot active"></div> <!-- Rose -->
+    <div class="progress-dot active"></div> <!-- Propose -->
+    <div class="progress-dot active"></div> <!-- Chocolate -->
+    <div class="progress-dot active"></div> <!-- Teddy -->
+    <div class="progress-dot active"></div> <!-- Promise -->
+    <div class="progress-dot active"></div> <!-- Hug -->
+    <div class="progress-dot active"></div> <!-- Kiss -->
+    <div class="progress-dot"></div> <!-- Valentine -->
+  </div>
+
+  <!-- Falling Lip Prints -->
+  <div class="lip-print" style="left: 10%; animation-delay: 0s"></div>
+  <div class="lip-print" style="left: 30%; animation-delay: 1.5s"></div>
+  <div class="lip-print" style="left: 50%; animation-delay: 2s"></div>
+  <div class="lip-print" style="left: 70%; animation-delay: 0.5s"></div>
+  <div class="lip-print" style="left: 90%; animation-delay: 3s"></div>
+
+  <div class="container">
+    <h2>💋 Kiss Day 💋</h2>
+    <p>"Sending you a thousand kisses, each one more special than the last!"<br></p>
+
+    <img src="img/kiss.gif" alt="kiss" style="width: 300px;">
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <button class="btn previous" onclick="window.location.href='hug-day.html'">← Previous</button>
+      <button class="btn" onclick="window.location.href='valentine-day.html'">Next →</button>
+    </div>
+  </div>
+
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+
+  <!-- Firebase Firestore (database) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+  <script src="tracking.js"></script>
+  <script>
+    // Track page visit
+    trackPageVisit('Kiss Day');
+  </script>
+</body>
+</html>

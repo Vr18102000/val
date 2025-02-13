@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hug Day - Valentine Week</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Hug Day Theme */
+    body {
+      background: linear-gradient(45deg, #ff7f50, #ff6347); /* Warm coral gradient */
+    }
+
+    /* Hugging Arms Animation */
+    .hug-container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      margin: 20px auto;
+    }
+
+    .arm {
+      position: absolute;
+      width: 80px;
+      height: 120px;
+      background: url('img/block.png') no-repeat;
+      background-size: contain;
+      transition: all 0.6s ease;
+    }
+
+    .left-arm {
+      left: 0;
+      transform-origin: right bottom;
+    }
+
+    .right-arm {
+      right: 0;
+      transform-origin: left bottom;
+    }
+
+    .hug-container:hover .left-arm {
+      transform: rotate(-20deg);
+    }
+
+    .hug-container:hover .right-arm {
+      transform: rotate(20deg);
+    }
+
+    /* Heartbeat Animation */
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .heartbeat {
+      animation: heartbeat 1.2s infinite;
+      width: 100px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Dots -->
+  <div class="day-progress">
+    <div class="progress-dot active"></div> <!-- Rose -->
+    <div class="progress-dot active"></div> <!-- Propose -->
+    <div class="progress-dot active"></div> <!-- Chocolate -->
+    <div class="progress-dot active"></div> <!-- Teddy -->
+    <div class="progress-dot active"></div> <!-- Promise -->
+    <div class="progress-dot active"></div> <!-- Hug -->
+    <div class="progress-dot"></div> <!-- Kiss -->
+    <div class="progress-dot"></div> <!-- Valentine -->
+  </div>
+
+  <div class="container">
+    <div class="hug-container">
+      <div class="arm left-arm"></div>
+      <img src="img/hug.gif" 
+           alt="hug" 
+           class="heartbeat">
+      <div class="arm right-arm"></div>
+    </div>
+
+    <div class="message">
+      <h2>🫂 Hug Day 🫂</h2>
+      <p>"This virtual hug has been waiting to reach you since the first time we met!"</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn previous" onclick="window.location.href='promise-day.html'">← Previous</button>
+      <button class="btn" onclick="window.location.href='kiss-day.html'">Next →</button>
+    </div>
+  </div>
+  
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+
+  <!-- Firebase Firestore (database) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+  <script src="tracking.js"></script>
+  <script>
+    // Add hugging interaction
+    let isHugging = false;
+    document.querySelector('.hug-container').addEventListener('click', () => {
+      const arms = document.querySelectorAll('.arm');
+      if(!isHugging) {
+        arms[0].style.transform = 'rotate(-30deg)';
+        arms[1].style.transform = 'rotate(30deg)';
+        document.querySelector('.heartbeat').style.animation = 'heartbeat 0.8s infinite';
+      } else {
+        arms[0].style.transform = 'rotate(0)';
+        arms[1].style.transform = 'rotate(0)';
+        document.querySelector('.heartbeat').style.animation = 'heartbeat 1.2s infinite';
+      }
+      isHugging = !isHugging;
+    });
+
+    trackPageVisit('Hug Day');
+  </script>
+</body>
+</html>

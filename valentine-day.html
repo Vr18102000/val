@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valentine's Day ❤️</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Valentine's Day Theme */
+    body {
+      background: linear-gradient(45deg, #ff0066, #ff1493);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Proposal Card */
+    .proposal-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(255, 20, 147, 0.5);
+      transform: scale(0);
+      animation: cardAppear 1s ease forwards;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes cardAppear {
+      to { transform: scale(1); }
+    }
+
+    /* Proposal Text */
+    .proposal-text {
+      font-size: 1.3em;
+      margin: 1rem 0;
+      color: #ff0066;
+      line-height: 1.5;
+    }
+
+    /* Yes/No Buttons */
+    .response-btn {
+      border: none;
+      border-radius: 30px;
+      padding: 15px 40px;
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0 10px;
+    }
+
+    #yesBtn {
+      background: linear-gradient(45deg, #ff1493, #ff0066);
+      color: white;
+    }
+
+    #noBtn {
+      background: linear-gradient(45deg, #888, #555);
+      color: white;
+    }
+
+    /* Celebration Animation */
+    .celebration {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* Floating Hearts */
+    .floating-heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('img/heart.png');
+      background-size: cover;
+      animation: float 6s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Hearts -->
+  <div class="floating-heart" style="left: 10%; animation-delay: 0s"></div>
+  <div class="floating-heart" style="left: 30%; animation-delay: 2s"></div>
+  <div class="floating-heart" style="left: 50%; animation-delay: 4s"></div>
+  <div class="floating-heart" style="left: 70%; animation-delay: 1s"></div>
+  <div class="floating-heart" style="left: 90%; animation-delay: 3s"></div>
+
+  <!-- Proposal Card -->
+  <div class="proposal-card">
+    <h1>❤️ Happy Valentine's Day! ❤️</h1>
+    <p class="proposal-text">
+      "Happy Valentine’s Day! No matter how far we are, my wish to be with you stays strong.💖<br>
+      So, what do you say, will you be my valentine this year, or do I need to start practicing my puppy eyes? 🥺😂"
+    </p>
+
+    <div class="btn-container">
+      <button class="response-btn" id="yesBtn">YES!</button>
+      <button class="response-btn" id="noBtn">Not Sure</button>
+    </div>
+  </div>
+
+  <!-- Celebration Elements -->
+  <div class="celebration" id="celebration"></div>
+
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+
+  <!-- Firebase Firestore (database) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+  <script>
+    // Track page visit
+    console.log("Valentine's Day page loaded");
+
+    // YES Button: Grand Celebration
+    document.getElementById('yesBtn').addEventListener('click', () => {
+      console.log("YES button clicked");
+      const card = document.querySelector('.proposal-card');
+      card.innerHTML = `
+        <h1>🎉 You Just Made My Life! 🎉</h1>
+        <p class="proposal-text" style="font-size: 1.5em">
+          "Yay! 🥳 You just made my day! 😍 Now, as your official Valentine, I promise to let you annoy me (maybe 😜) and make you smile more! 💖<br>
+          Alsooo, isn’t it a beautifool pic time? 😏📸 Or would like to talk sooner to celebrate? 😇💖"
+        </p>
+        <img src="img/happy.gif" 
+             alt="Happy" 
+             style="width: 200px; margin-top: 20px;">
+      `;
+
+      // Add confetti
+      const celebration = document.getElementById('celebration');
+      for (let i = 0; i < 50; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.style.position = 'absolute';
+        sparkle.style.width = '10px';
+        sparkle.style.height = '10px';
+        sparkle.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        sparkle.style.borderRadius = '50%';
+        sparkle.style.left = `${Math.random() * 100}%`;
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.style.animation = `sparkleFall ${1 + Math.random() * 2}s linear`;
+        celebration.appendChild(sparkle);
+      }
+    });
+
+    // NO Button: Playful Persuasion
+    document.getElementById('noBtn').addEventListener('click', () => {
+      console.log("NO button clicked");
+      const card = document.querySelector('.proposal-card');
+      card.innerHTML = `
+        <h1>😢 Wait! Let's Try Again</h1>
+        <p class="proposal-text" style="color: #666">
+          "Oof… that hurt! 🥺 Okay, maybe I came on too strong!<br>
+            But hey, there's still a 'Maybe' button... just saying. 😏🐶💖"
+        </p>
+        <img src="img/shock.gif" 
+             alt="shock" 
+             style="width: 200px; margin-top: 20px;">
+        <img src="img/puppy.gif" 
+             alt="puppy eye" 
+             style="width: 200px; margin-top: 20px;">
+        <img src="img/puppy.jpeg" 
+             alt="puppy eye" 
+             style="width: 100px; margin-top: 20px;">
+             <br>
+        <button class="response-btn" id="maybeBtn" 
+                style="background: linear-gradient(45deg, #ff9933, #ff5500)">
+          Maybe... 🥺
+        </button>
+      `;
+
+      // Add hidden "Maybe" interaction
+      document.getElementById('maybeBtn').addEventListener('click', () => {
+        console.log("Maybe button clicked");
+        window.location.reload(); // Restart the magic
+      });
+    });
+
+    // Add floating hearts continuously
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${4 + Math.random() * 4}s`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 1000);
+  </script>
+</body>
+</html>

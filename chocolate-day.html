@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chocolate Day - Valentine Week</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Chocolate Day Theme */
+    body {
+      background: linear-gradient(45deg, #8b4513, #d2691e); /* Brown gradient */
+      animation: gradientBG 15s ease infinite;
+    }
+
+    /* Chocolate Box Container */
+    .chocolate-box {
+      width: 250px;
+      margin: 20px 0;
+      transition: transform 0.3s ease;
+    }
+
+    .chocolate-box:hover {
+      transform: scale(1.05);
+    }
+
+    /* Message Styling */
+    .choco-message {
+      font-size: 1.2em;
+      color: #b47b35;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      margin: 15px 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .chocolate {
+        width: 30px;
+        height: 30px;
+      }
+      .chocolate-box {
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Dots -->
+  <div class="day-progress">
+    <div class="progress-dot active"></div> <!-- Rose -->
+    <div class="progress-dot active"></div> <!-- Propose -->
+    <div class="progress-dot active"></div> <!-- Chocolate -->
+    <div class="progress-dot"></div> <!-- Teddy -->
+    <div class="progress-dot"></div> <!-- Promise -->
+    <div class="progress-dot"></div> <!-- Hug -->
+    <div class="progress-dot"></div> <!-- Kiss -->
+    <div class="progress-dot"></div> <!-- Valentine -->
+  </div>
+
+  <!-- Falling Chocolates -->
+  <div class="chocolate" style="left: 15%; animation-delay: 0s"></div>
+  <div class="chocolate" style="left: 35%; animation-delay: 1.2s"></div>
+  <div class="chocolate" style="left: 55%; animation-delay: 2.5s"></div>
+  <div class="chocolate" style="left: 75%; animation-delay: 0.8s"></div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <img src="img/chocolate.gif" 
+         alt="Chocolate Box" 
+         class="chocolate-box">
+    
+    <div class="message">
+      <h2>🍫 Chocolate Day 🍫</h2>
+      <p class="choco-message">
+        "Chocolate Day pe chocolate deni thi, par tum yaha ho nahi. So, buy the one you haven't try or else jab yaha aaogi, bohot saari yum yum chocolate ice-cream khilaunga😜"
+      </p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn previous" onclick="window.location.href='propose-day.html'">← Previous</button>
+      <button class="btn" onclick="window.location.href='teddy-day.html'">Next →</button>
+    </div>
+  </div>
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+
+  <!-- Firebase Firestore (database) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+  <script src="tracking.js"></script>
+  <script>
+    // Track page visit
+    trackPageVisit('Chocolate Day');
+
+    // Interactive Chocolates
+    document.querySelectorAll('.chocolate').forEach(choco => {
+      choco.addEventListener('click', () => {
+        choco.style.transform = 'scale(1.5) rotate(720deg)';
+        choco.style.opacity = '0';
+        setTimeout(() => {
+          choco.remove();
+        }, 500);
+      });
+    });
+
+    // Auto-generate chocolates
+    function createChocolate() {
+      const choco = document.createElement('div');
+      choco.classList.add('chocolate');
+      choco.style.left = `${Math.random() * 100}%`;
+      choco.style.animationDuration = `${6 + Math.random() * 4}s`;
+      document.body.appendChild(choco);
+      
+      // Remove after animation
+      setTimeout(() => choco.remove(), 10000);
+    }
+    setInterval(createChocolate, 2000);
+  </script>
+</body>
+</html>
