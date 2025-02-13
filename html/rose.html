@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rose Day - Valentine Week</title>
+  <style>
+    /* Shared Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(45deg, #efa8cc, #b66490);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Rose Petals Animation */
+    .petal {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: url('https://cdn.pixabay.com/animation/2022/11/05/02/32/02-32-37-793_512.gif');
+      background-size: cover;
+      opacity: 0.8;
+      animation: floatPetals 8s linear infinite;
+      filter: drop-shadow(0 0 5px rgba(255, 20, 147, 0.7));
+    }
+
+    @keyframes floatPetals {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .petal {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    /* Container Styles */
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+      text-align: center;
+      z-index: 10;
+      max-width: 500px;
+      margin: 1rem;
+    }
+
+    .rose-img {
+      width: 180px;
+      filter: drop-shadow(0 0 15px rgba(255, 20, 147, 0.5));
+      margin: 1rem 0;
+    }
+
+    /* Progress Navigation */
+    .day-progress {
+      position: fixed;
+      top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .progress-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #ffffff80;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .progress-dot.active {
+      background: #ee82bc;
+      box-shadow: 0 0 10px #ff69b4;
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Dots -->
+  <div class="day-progress">
+    <div class="progress-dot active"></div>
+    <div class="progress-dot"></div>
+    <!-- Add 6 more dots -->
+  </div>
+
+  <!-- Rose Petals -->
+  <div class="petal" style="left: 5%; animation-delay: 0s; animation-duration: 6s"></div>
+  <div class="petal" style="left: 15%; animation-delay: 1s; animation-duration: 8s"></div>
+  <div class="petal" style="left: 25%; animation-delay: 2s; animation-duration: 7s"></div>
+  <div class="petal" style="left: 35%; animation-delay: 0.5s; animation-duration: 9s"></div>
+  <div class="petal" style="left: 45%; animation-delay: 1.5s; animation-duration: 6.5s"></div>
+  <div class="petal" style="left: 55%; animation-delay: 2.5s; animation-duration: 7.5s"></div>
+  <div class="petal" style="left: 65%; animation-delay: 0.8s; animation-duration: 8.5s"></div>
+  <div class="petal" style="left: 75%; animation-delay: 1.2s; animation-duration: 7.2s"></div>
+  <div class="petal" style="left: 85%; animation-delay: 2.8s; animation-duration: 6.8s"></div>
+  <div class="petal" style="left: 95%; animation-delay: 0.3s; animation-duration: 9.2s"></div>
+  <!-- Add more petals -->
+
+  <div class="container">
+    <img src="/val/img/rose.jpeg" 
+         alt="Animated Rose" 
+         class="rose-img">
+    
+    <div class="message">
+      <h2>🌹 Rose Day Special 🌹</h2>
+      <p>"Like this rose, my feelings for you bloom beautifully..."</p>
+    </div>
+
+    <div class="btn-container">
+      <button class="btn accept-rose">Accept Rose</button>
+    </div>
+  </div>
+
+  <script>
+    // Rose Interaction Logic
+    document.querySelector('.accept-rose').addEventListener('click', () => {
+      document.querySelector('.rose-img').style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        alert("Roses accepted! Let's continue our journey...");
+      }, 500);
+    });
+    // Interactive Petals
+    document.querySelectorAll('.petal').forEach(petal => {
+      petal.addEventListener('click', () => {
+        petal.style.transform = 'scale(1.5) rotate(720deg)';
+        petal.style.opacity = '0';
+        setTimeout(() => {
+          petal.remove();
+        }, 500);
+      });
+    });
+    
+    // Continuous Petal Generation
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = `${Math.random() * 100}%`;
+      petal.style.animationDuration = `${6 + Math.random() * 4}s`;
+      petal.style.animationDelay = `${Math.random() * 3}s`;
+      document.body.appendChild(petal);
+      
+      // Remove after animation
+      setTimeout(() => {
+        petal.remove();
+      }, 10000);
+    }
+    // Generate petals every second
+    setInterval(createPetal, 1000);
+
+    // Add localStorage integration for progress tracking
+  </script>
+</body>
+</html>

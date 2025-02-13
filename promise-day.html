@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Promise Day - Valentine Week</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Promise Day Theme */
+    body {
+      background: linear-gradient(45deg, #6a5acd, #9370db); /* Purple gradient */
+    }
+
+    /* Promise Card Animation */
+    .promise-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      margin: 1rem;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Promise Icon */
+    .promise-icon {
+      width: 100px;
+      filter: drop-shadow(0 0 10px rgba(106, 90, 205, 0.5));
+      margin-bottom: 1rem;
+    }
+
+    /* Promise Text */
+    .promise-text {
+      font-size: 1.2em;
+      color: #333;
+      margin: 1rem 0;
+    }
+
+    /* Promise Buttons */
+    .promise-btn {
+      background: linear-gradient(45deg, #6a5acd, #9370db);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 24px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .promise-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Dots -->
+  <div class="day-progress">
+    <div class="progress-dot active"></div> <!-- Rose -->
+    <div class="progress-dot active"></div> <!-- Propose -->
+    <div class="progress-dot active"></div> <!-- Chocolate -->
+    <div class="progress-dot active"></div> <!-- Teddy -->
+    <div class="progress-dot active"></div> <!-- Promise -->
+    <div class="progress-dot"></div> <!-- Hug -->
+    <div class="progress-dot"></div> <!-- Kiss -->
+    <div class="progress-dot"></div> <!-- Valentine -->
+  </div>
+
+  <!-- Promise Card -->
+  <div class="container promise-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png" alt="Promise Icon" class="promise-icon">
+    
+    <div class="message">
+      <h2>🤝 Promise Day 🤝</h2>
+      <p class="promise-text">
+        "On this Promise Day, I want to make a few promises to you:
+        <br><br>
+        1. I promise to always be there for you, no matter what.
+        <br>
+        2. I promise to make you smile, even on your toughest days.
+        <br>
+        3. I promise to cherish every moment we share together.
+        <br><br>
+        These promises are forever, just like my love for you."
+      </p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn previous" onclick="window.location.href='teddy-day.html'">← Previous</button>
+      <button class="btn" onclick="window.location.href='hug-day.html'">Next →</button>
+    </div>
+  </div>
+
+  <script src="tracking.js"></script>
+  <script>
+    // Track page visit
+    trackPageVisit('Promise Day');
+  </script>
+</body>
+</html>

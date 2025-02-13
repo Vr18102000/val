@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teddy Day - Valentine Week</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Teddy Day Theme */
+    body {
+      background: linear-gradient(45deg, #ffb6c1, #ff69b4); /* Pink gradient */
+    }
+
+    .teddy-img {
+      width: 200px;
+      transition: transform 0.6s ease-in-out;
+      filter: drop-shadow(0 0 15px rgba(255, 20, 147, 0.5));
+    }
+
+    /* Teddy Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .teddy-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Hide elements initially */
+    #previousBtn, #nextBtn {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Dots -->
+  <div class="day-progress">
+    <div class="progress-dot active"></div> <!-- Rose -->
+    <div class="progress-dot active"></div> <!-- Propose -->
+    <div class="progress-dot active"></div> <!-- Chocolate -->
+    <div class="progress-dot active"></div> <!-- Teddy -->
+    <div class="progress-dot"></div> <!-- Promise -->
+    <div class="progress-dot"></div> <!-- Hug -->
+    <div class="progress-dot"></div> <!-- Kiss -->
+    <div class="progress-dot"></div> <!-- Valentine -->
+  </div>
+
+  <div class="container">
+    <img src="https://i.pinimg.com/originals/8e/71/ac/8e71ac0294efb72c0a3d395ea7632912.gif" 
+         alt="Cute Teddy" 
+         class="teddy-img teddy-float">
+    
+    <div class="message">
+      <h2>🧸 Teddy Day 🧸</h2>
+      <p>"Even if you ignored my texts, my love sticks around like this teddy!"</p>
+    </div>
+
+    <div class="nav-buttons">
+      <div class="choice-buttons">
+        <button class="btn" id="acceptBtn">Accept Teddy</button>
+        <button class="btn" id="rejectBtn">Reject Teddy</button>
+      </div>
+      <button class="btn previous" id="previousBtn" 
+              onclick="window.location.href='chocolate-day.html'">← Previous</button>
+      <button class="btn" id="nextBtn" 
+              onclick="window.location.href='promise-day.html'">Next →</button>
+    </div>
+  </div>
+
+  <script src="tracking.js"></script>
+  <script>
+    // Teddy Interactions
+    function showNavigation() {
+      document.getElementById('previousBtn').style.display = 'inline-block';
+      document.getElementById('nextBtn').style.display = 'inline-block';
+      document.querySelector('.choice-buttons').style.display = 'none';
+    }
+
+    document.getElementById('acceptBtn').addEventListener('click', () => {
+      document.querySelector('.teddy-img').src = "https://media.tenor.com/cCEplvCdTPIAAAAM/kisses-happy-valentines-day.gif";
+      showNavigation();
+    });
+
+    document.getElementById('rejectBtn').addEventListener('click', () => {
+      document.querySelector('.teddy-img').src = "https://media.tenor.com/7BXi2S-xyk8AAAAM/ted-ted-serie.gif";
+      showNavigation();
+    });
+
+    // Track page visit
+    trackPageVisit('Teddy Day');
+  </script>
+</body>
+</html>

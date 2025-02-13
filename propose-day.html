@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Propose Day - Valentine Week</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Propose Day Theme */
+    body {
+      background: linear-gradient(45deg, #ff6b6b, #ff4757); /* Romantic red gradient */
+      animation: gradientBG 15s ease infinite;
+    }
+
+    /* Floating Hearts Animation */
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+      background-size: cover;
+      animation: floatHeart 6s linear infinite;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 5px rgba(255, 20, 147, 0.7));
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    /* Proposal Card */
+    .proposal-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      margin: 1rem;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Proposal Text */
+    .proposal-text {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #333;
+      margin: 1rem 0;
+      text-align: left;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .proposal-text {
+        font-size: 1em;
+      }
+      .heart {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Dots -->
+  <div class="day-progress">
+    <div class="progress-dot active"></div> <!-- Rose -->
+    <div class="progress-dot active"></div> <!-- Propose -->
+    <div class="progress-dot"></div> <!-- Chocolate -->
+    <div class="progress-dot"></div> <!-- Teddy -->
+    <div class="progress-dot"></div> <!-- Promise -->
+    <div class="progress-dot"></div> <!-- Hug -->
+    <div class="progress-dot"></div> <!-- Kiss -->
+    <div class="progress-dot"></div> <!-- Valentine -->
+  </div>
+
+  <!-- Floating Hearts -->
+  <div class="heart" style="left: 10%; animation-delay: 0s"></div>
+  <div class="heart" style="left: 30%; animation-delay: 1.5s"></div>
+  <div class="heart" style="left: 50%; animation-delay: 2s"></div>
+  <div class="heart" style="left: 70%; animation-delay: 0.5s"></div>
+  <div class="heart" style="left: 90%; animation-delay: 3s"></div>
+
+  <!-- Proposal Content -->
+  <div class="container proposal-card">
+    <h2>💍 Propose Day 💍</h2>
+    <div class="proposal-text">
+      <p>
+        Hey, I know things have felt a bit off between us lately, and I'm really sorry if I've added to that. 
+        I just want you to know that you've always been incredibly special to me—past, present, and future.<br><br>
+        
+        I truly value every moment we’ve shared, whether they were filled with laughter or tough times. 
+        When the time feels right, I hope to express all of this in person.<br><br>
+        
+        And hey, when I do, I promise to use my famously 'sexy and charming' voice—though it might come with a side of goofy too! 
+        Until then, consider this message a big virtual hug with extra silliness. Stay awesome!
+      </p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-buttons">
+      <button class="btn previous" onclick="window.location.href='index.html'">← Previous</button>
+      <button class="btn" onclick="window.location.href='chocolate-day.html'">Next →</button>
+    </div>
+  </div>
+
+  <script src="tracking.js"></script>
+  <script>
+    // Track page visit
+    trackPageVisit('Propose Day');
+
+    // Auto-generate hearts for better animation
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${4 + Math.random() * 4}s`;
+      document.body.appendChild(heart);
+      
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 1500);
+  </script>
+</body>
+</html>

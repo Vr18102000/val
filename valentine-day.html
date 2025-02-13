@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valentine's Day ❤️</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Valentine's Day Theme */
+    body {
+      background: linear-gradient(45deg, #ff0066, #ff1493);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Floating Hearts Background */
+    .floating-heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+      background-size: cover;
+      animation: float 6s linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
+
+    /* Proposal Card */
+    .proposal-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(255, 20, 147, 0.5);
+      transform: scale(0);
+      animation: cardAppear 1s ease forwards;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes cardAppear {
+      to { transform: scale(1); }
+    }
+
+    /* Proposal Text */
+    .proposal-text {
+      font-size: 1.8em;
+      margin: 2rem 0;
+      color: #ff0066;
+      line-height: 1.5;
+    }
+
+    /* Yes/No Buttons */
+    .response-btn {
+      border: none;
+      border-radius: 30px;
+      padding: 15px 40px;
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0 10px;
+    }
+
+    #yesBtn {
+      background: linear-gradient(45deg, #ff1493, #ff0066);
+      color: white;
+    }
+
+    #noBtn {
+      background: linear-gradient(45deg, #888, #555);
+      color: white;
+    }
+
+    /* Celebration Animation */
+    .celebration {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* Hidden Video Background for "Yes" */
+    #videoBg {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Hearts -->
+  <div class="floating-heart" style="left: 10%; animation-delay: 0s"></div>
+  <div class="floating-heart" style="left: 30%; animation-delay: 2s"></div>
+  <div class="floating-heart" style="left: 50%; animation-delay: 4s"></div>
+  <div class="floating-heart" style="left: 70%; animation-delay: 1s"></div>
+  <div class="floating-heart" style="left: 90%; animation-delay: 3s"></div>
+
+  <!-- Proposal Card -->
+  <div class="proposal-card">
+    <h1>❤️ Happy Valentine's Day! ❤️</h1>
+    <p class="proposal-text">
+      "From the first moment we met, you've been the missing piece I never knew I needed.<br>
+      Will you let me keep making you smile... forever?"
+    </p>
+
+    <div class="btn-container">
+      <button class="response-btn" id="yesBtn">YES!</button>
+      <button class="response-btn" id="noBtn">Not Sure</button>
+    </div>
+  </div>
+
+  <!-- Celebration Elements -->
+  <div class="celebration" id="celebration"></div>
+
+  <!-- Hidden Video Background -->
+  <video id="videoBg" loop muted>
+    <source src="romantic-fireworks.mp4" type="video/mp4">
+  </video>
+
+  <script src="tracking.js"></script>
+  <script>
+    // Track page visit
+    trackPageVisit("Valentine's Day");
+
+    // YES Button: Grand Celebration
+    document.getElementById('yesBtn').addEventListener('click', () => {
+      // Start video background
+      const video = document.getElementById('videoBg');
+      video.play();
+      video.style.opacity = '1';
+
+      // Create fireworks
+      for(let i=0; i<100; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDuration = `${2 + Math.random() * 3}s`;
+        document.body.appendChild(heart);
+      }
+
+      // Show final message
+      const card = document.querySelector('.proposal-card');
+      card.innerHTML = `
+        <h1>🎉 You Just Made My Life! 🎉</h1>
+        <p class="proposal-text" style="font-size: 1.5em">
+          "I promise to keep choosing you every single day.<br>
+          Let's make forever our favorite adventure! 💖"
+        </p>
+        <img src="couple-silhouette.gif" style="width: 200px">
+      `;
+
+      // Add confetti
+      const celebration = document.getElementById('celebration');
+      for(let i=0; i<50; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.style.position = 'absolute';
+        sparkle.style.width = '10px';
+        sparkle.style.height = '10px';
+        sparkle.style.background = `hsl(${Math.random()*360}, 100%, 50%)`;
+        sparkle.style.borderRadius = '50%';
+        sparkle.style.left = `${Math.random() * 100}%`;
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.style.animation = `sparkleFall ${1 + Math.random()*2}s linear`;
+        celebration.appendChild(sparkle);
+      }
+    });
+
+    // NO Button: Playful Persuasion
+    document.getElementById('noBtn').addEventListener('click', () => {
+      const card = document.querySelector('.proposal-card');
+      card.style.transform = 'rotate(-5deg)';
+      
+      // Create disappearing effect
+      document.querySelectorAll('.floating-heart').forEach(heart => {
+        heart.style.animation = 'heartFade 1s forwards';
+      });
+
+      // Update card content
+      card.innerHTML = `
+        <h1>😢 Wait! Let's Try Again</h1>
+        <p class="proposal-text" style="color: #666">
+          "Okay, maybe I came on too strong!<br>
+          How about we start with 'Will you be my forever Valentine?' 🌹"
+        </p>
+        <button class="response-btn" id="maybeBtn" 
+                style="background: linear-gradient(45deg, #ff9933, #ff5500)">
+          Maybe... 😉
+        </button>
+      `;
+
+      // Add hidden "Maybe" interaction
+      document.getElementById('maybeBtn').addEventListener('click', () => {
+        window.location.reload(); // Restart the magic
+      });
+    });
+
+    // Add floating hearts continuously
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${4 + Math.random() * 4}s`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 1000);
+  </script>
+</body>
+</html>
