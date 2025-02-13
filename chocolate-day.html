@@ -12,24 +12,6 @@
       animation: gradientBG 15s ease infinite;
     }
 
-    /* Falling Chocolates Animation */
-    .chocolate {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background: url('https://cdn-icons-png.flaticon.com/512/2414/2414421.png');
-      background-size: cover;
-      animation: fallChocolate 8s linear infinite;
-      cursor: pointer;
-      filter: drop-shadow(0 0 5px rgba(139, 69, 19, 0.5));
-    }
-
-    @keyframes fallChocolate {
-      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-      30% { opacity: 1; }
-      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-    }
-
     /* Chocolate Box Container */
     .chocolate-box {
       width: 250px;
@@ -44,7 +26,7 @@
     /* Message Styling */
     .choco-message {
       font-size: 1.2em;
-      color: #fff;
+      color: #b47b35;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
       margin: 15px 0;
     }
@@ -82,14 +64,14 @@
 
   <!-- Main Content -->
   <div class="container">
-    <img src="https://www.freeiconspng.com/uploads/chocolate-box-png-5.png" 
+    <img src="img/chocolate.gif" 
          alt="Chocolate Box" 
          class="chocolate-box">
     
     <div class="message">
       <h2>🍫 Chocolate Day 🍫</h2>
       <p class="choco-message">
-        "Just like fine chocolate, my love for you gets sweeter every day!"
+        "Chocolate Day pe chocolate deni thi, par tum yaha ho nahi. So, buy the one you haven't try or else jab yaha aaogi, bohot saari yum yum chocolate ice-cream khilaunga😜"
       </p>
     </div>
 
@@ -98,7 +80,11 @@
       <button class="btn" onclick="window.location.href='teddy-day.html'">Next →</button>
     </div>
   </div>
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
 
+  <!-- Firebase Firestore (database) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
   <script src="tracking.js"></script>
   <script>
     // Track page visit

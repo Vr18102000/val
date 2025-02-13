@@ -17,7 +17,7 @@
       position: absolute;
       width: 30px;
       height: 30px;
-      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+      background: url('img/heart.png');
       background-size: cover;
       animation: floatHeart 6s linear infinite;
       opacity: 0.8;
@@ -49,7 +49,7 @@
     /* Proposal Text */
     .proposal-text {
       font-size: 1.1em;
-      line-height: 1.6;
+      line-height: 1.2;
       color: #333;
       margin: 1rem 0;
       text-align: left;
@@ -101,6 +101,9 @@
         And hey, when I do, I promise to use my famously 'sexy and charming' voice—though it might come with a side of goofy too! 
         Until then, consider this message a big virtual hug with extra silliness. Stay awesome!
       </p>
+      <img src="img/speaking.gif" 
+       alt="Cute GIF" 
+       style="width: 150px; margin: 20px auto; display: block; border-radius: 10px;">
     </div>
 
     <!-- Navigation -->
@@ -110,6 +113,11 @@
     </div>
   </div>
 
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+
+  <!-- Firebase Firestore (database) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
   <script src="tracking.js"></script>
   <script>
     // Track page visit

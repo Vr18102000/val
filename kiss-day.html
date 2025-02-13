@@ -16,7 +16,7 @@
       position: absolute;
       width: 50px;
       height: 50px;
-      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat;
+      background: url('img/heart.png') no-repeat;
       background-size: cover;
       opacity: 0;
       animation: floatLips 6s linear infinite;
@@ -83,10 +83,9 @@
 
   <div class="container">
     <h2>💋 Kiss Day 💋</h2>
-    <p>"Sending you a thousand kisses, each one more special than the last!"</p>
+    <p>"Sending you a thousand kisses, each one more special than the last!"<br></p>
 
-    <!-- Kiss Button -->
-    <button class="kiss-btn" onclick="sendKiss()">💋</button>
+    <img src="img/kiss.gif" alt="kiss" style="width: 300px;">
 
     <!-- Navigation -->
     <div class="nav-buttons">
@@ -95,32 +94,15 @@
     </div>
   </div>
 
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+
+  <!-- Firebase Firestore (database) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
   <script src="tracking.js"></script>
   <script>
     // Track page visit
     trackPageVisit('Kiss Day');
-
-    // Send Kiss Animation
-    function sendKiss() {
-      const kiss = document.createElement('div');
-      kiss.classList.add('lip-print');
-      kiss.style.left = `${Math.random() * 100}%`;
-      kiss.style.animationDuration = `${4 + Math.random() * 4}s`;
-      document.body.appendChild(kiss);
-      
-      setTimeout(() => kiss.remove(), 6000);
-    }
-
-    // Auto-generate lip prints
-    setInterval(() => {
-      const kiss = document.createElement('div');
-      kiss.classList.add('lip-print');
-      kiss.style.left = `${Math.random() * 100}%`;
-      kiss.style.animationDuration = `${4 + Math.random() * 4}s`;
-      document.body.appendChild(kiss);
-      
-      setTimeout(() => kiss.remove(), 6000);
-    }, 2000);
   </script>
 </body>
 </html>

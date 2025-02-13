@@ -11,7 +11,7 @@
       position: absolute;
       width: 50px;
       height: 50px;
-      background: url('https://cdn.pixabay.com/animation/2022/11/05/02/32/02-32-37-793_512.gif');
+      background: url('/img/petal.webp');
       background-size: cover;
       opacity: 0.8;
       animation: floatPetals 8s linear infinite;
@@ -69,7 +69,7 @@
 
   <!-- Main Content -->
   <div class="container">
-    <img src="/val/img/rose.jpeg" alt="Animated Rose" class="rose-img">
+    <img src="img/rose.jpeg" alt="Animated Rose" class="rose-img">
     
     <div class="message">
       <h2>🌹 Rose Day Special 🌹</h2>
@@ -80,11 +80,27 @@
       <button class="btn" onclick="window.location.href='propose-day.html'">Next →</button>
     </div>
   </div>
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
 
-  <script src="tracking.js"></script>
+  <!-- Firebase Firestore (database) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+  <script src="firebase.js"></script>
   <script>
     // Track page visit
     trackPageVisit('Rose Day');
+
+    // Track time spent on Rose Day
+    let startTime = Date.now();
+
+    window.addEventListener('beforeunload', () => {
+      logTimeSpent('Rose Day');
+    });
+
+    // Log time when the page is unloaded (closed or navigated away)
+    window.addEventListener('beforeunload', () => {
+      logTimeSpent('Rose Day');
+    });
 
     // Interactive Petals
     document.querySelectorAll('.petal').forEach(petal => {
