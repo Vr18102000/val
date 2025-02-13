@@ -37,8 +37,8 @@
 
     /* Proposal Text */
     .proposal-text {
-      font-size: 1.8em;
-      margin: 2rem 0;
+      font-size: 1.3em;
+      margin: 1rem 0;
       color: #ff0066;
       line-height: 1.5;
     }
@@ -80,7 +80,7 @@
       position: absolute;
       width: 30px;
       height: 30px;
-      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+      background: url('img/heart.png');
       background-size: cover;
       animation: float 6s linear infinite;
       opacity: 0.6;
@@ -104,8 +104,8 @@
   <div class="proposal-card">
     <h1>❤️ Happy Valentine's Day! ❤️</h1>
     <p class="proposal-text">
-      "From the first moment we met, you've been the missing piece I never knew I needed.<br>
-      Will you let me keep making you smile... forever?"
+      "Happy Valentine’s Day! No matter how far we are, my wish to be with you stays strong.💖<br>
+      So, what do you say, will you be my valentine this year, or do I need to start practicing my puppy eyes? 🥺😂"
     </p>
 
     <div class="btn-container">
@@ -133,11 +133,11 @@
       card.innerHTML = `
         <h1>🎉 You Just Made My Life! 🎉</h1>
         <p class="proposal-text" style="font-size: 1.5em">
-          "I promise to keep choosing you every single day.<br>
-          Let's make forever our favorite adventure! 💖"
+          "Yay! 🥳 You just made my day! 😍 Now, as your official Valentine, I promise to let you annoy me (maybe 😜) and make you smile more! 💖<br>
+          Alsooo, isn’t it a beautifool pic time? 😏📸 Or would like to talk sooner to celebrate? 😇💖"
         </p>
-        <img src="https://i.pinimg.com/originals/8e/71/ac/8e71ac0294efb72c0a3d395ea7632912.gif" 
-             alt="Happy Couple" 
+        <img src="img/happy.gif" 
+             alt="Happy" 
              style="width: 200px; margin-top: 20px;">
       `;
 
@@ -164,12 +164,22 @@
       card.innerHTML = `
         <h1>😢 Wait! Let's Try Again</h1>
         <p class="proposal-text" style="color: #666">
-          "Okay, maybe I came on too strong!<br>
-          How about we start with 'Will you be my forever Valentine?' 🌹"
+          "Oof… that hurt! 🥺 Okay, maybe I came on too strong!<br>
+            But hey, there's still a 'Maybe' button... just saying. 😏🐶💖"
         </p>
+        <img src="img/shock.gif" 
+             alt="shock" 
+             style="width: 200px; margin-top: 20px;">
+        <img src="img/puppy.gif" 
+             alt="puppy eye" 
+             style="width: 200px; margin-top: 20px;">
+        <img src="img/puppy.jpeg" 
+             alt="puppy eye" 
+             style="width: 100px; margin-top: 20px;">
+             <br>
         <button class="response-btn" id="maybeBtn" 
                 style="background: linear-gradient(45deg, #ff9933, #ff5500)">
-          Maybe... 😉
+          Maybe... 🥺
         </button>
       `;
 
