@@ -90,9 +90,18 @@
       0% { transform: translateY(100vh) rotate(0deg); }
       100% { transform: translateY(-100vh) rotate(360deg); }
     }
+
+    /* Hide the audio element */
+    #background-music {
+      display: none;
+    }
   </style>
 </head>
 <body>
+  <audio id="background-music" loop>
+    <source src="audio/song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
   <!-- Floating Hearts -->
   <div class="floating-heart" style="left: 10%; animation-delay: 0s"></div>
   <div class="floating-heart" style="left: 30%; animation-delay: 2s"></div>
@@ -123,6 +132,34 @@
   <!-- Firebase Firestore (database) -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
   <script>
+    // Play music on user interaction
+    document.addEventListener('click', () => {
+      const music = document.getElementById('background-music');
+      if (music.paused) {
+        music.play();
+      }
+    });
+
+    // Save playback time before leaving the page
+    window.addEventListener('beforeunload', () => {
+      const music = document.getElementById('background-music');
+      localStorage.setItem('musicTime', music.currentTime);
+    });
+
+    // Load saved playback time when the page loads
+    window.onload = () => {
+      const music = document.getElementById('background-music');
+      const savedTime = localStorage.getItem('musicTime');
+
+      if (savedTime) {
+        music.currentTime = parseFloat(savedTime);
+      }
+
+      music.play().catch(() => {
+        console.log("Autoplay blocked. Click anywhere to play the music.");
+      });
+    };
+    
     // Track page visit
     console.log("Valentine's Day page loaded");
 
