@@ -41,18 +41,9 @@
         width: 200px;
       }
     }
-
-    /* Hide the audio element */
-    #background-music {
-      display: none;
-    }
   </style>
 </head>
 <body>
-  <audio id="background-music" loop>
-    <source src="audio/song.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
   <!-- Progress Dots -->
   <div class="day-progress">
     <div class="progress-dot active"></div> <!-- Rose -->
@@ -64,12 +55,6 @@
     <div class="progress-dot"></div> <!-- Kiss -->
     <div class="progress-dot"></div> <!-- Valentine -->
   </div>
-
-  <!-- Falling Chocolates -->
-  <div class="chocolate" style="left: 15%; animation-delay: 0s"></div>
-  <div class="chocolate" style="left: 35%; animation-delay: 1.2s"></div>
-  <div class="chocolate" style="left: 55%; animation-delay: 2.5s"></div>
-  <div class="chocolate" style="left: 75%; animation-delay: 0.8s"></div>
 
   <!-- Main Content -->
   <div class="container">
@@ -85,48 +70,12 @@
     </div>
 
     <div class="nav-buttons">
-      <button class="btn previous" onclick="window.location.href='propose-day.html'">← Previous</button>
-      <button class="btn" onclick="window.location.href='teddy-day.html'">Next →</button>
+      <button class="btn previous" onclick="parent.document.getElementById('contentFrame').src='propose-day.html'">← Previous</button>
+      <button class="btn" onclick="parent.document.getElementById('contentFrame').src='teddy-day.html'">Next →</button>
     </div>
   </div>
-  <!-- Firebase App (core) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
 
-  <!-- Firebase Firestore (database) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
-  <script src="tracking.js"></script>
-  <script>
-    // Play music on user interaction
-    document.addEventListener('click', () => {
-      const music = document.getElementById('background-music');
-      if (music.paused) {
-        music.play();
-      }
-    });
-
-    // Save playback time before leaving the page
-    window.addEventListener('beforeunload', () => {
-      const music = document.getElementById('background-music');
-      localStorage.setItem('musicTime', music.currentTime);
-    });
-
-    // Load saved playback time when the page loads
-    window.onload = () => {
-      const music = document.getElementById('background-music');
-      const savedTime = localStorage.getItem('musicTime');
-
-      if (savedTime) {
-        music.currentTime = parseFloat(savedTime);
-      }
-
-      music.play().catch(() => {
-        console.log("Autoplay blocked. Click anywhere to play the music.");
-      });
-    };
-    
-    // Track page visit
-    trackPageVisit('Chocolate Day');
-
+  <script>    
     // Interactive Chocolates
     document.querySelectorAll('.chocolate').forEach(choco => {
       choco.addEventListener('click', () => {
