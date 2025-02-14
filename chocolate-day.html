@@ -12,6 +12,21 @@
       animation: gradientBG 15s ease infinite;
     }
 
+    .chocolate-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      margin: 1rem;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
     /* Chocolate Box Container */
     .chocolate-box {
       width: 250px;
@@ -57,7 +72,7 @@
   </div>
 
   <!-- Main Content -->
-  <div class="container">
+  <div class="container chocolate-card">
     <img src="img/chocolate.gif" 
          alt="Chocolate Box" 
          class="chocolate-box">
