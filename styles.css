@@ -8,10 +8,10 @@
   /* Body and Background */
   body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(45deg, #ff69b4, #ff1493);
+    background: linear-gradient(45deg, #f0acce, #fa70ba);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,6 +20,25 @@
     overflow: hidden;
   }
   
+  @media (max-width: 600px) {
+    .container {
+      width: 90%;         /* Use a percentage width */
+      max-width: 100%;    /* Ensure it doesn’t exceed the viewport */
+      margin: 1rem auto;  /* Center with auto margins */
+      padding: 1rem;      /* Reduce padding if needed */
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 5px;
+    }
+    
+    h1, h2, h3, p {
+      font-size: 0.9em;  /* Slightly reduce font sizes */
+    }
+  }
+
   @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -88,4 +107,9 @@
 
   .btn.previous {
     background: linear-gradient(45deg, #6c5ce7, #a8a4e6);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }

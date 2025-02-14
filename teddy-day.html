@@ -31,18 +31,9 @@
     #previousBtn, #nextBtn {
       display: none;
     }
-
-    /* Hide the audio element */
-    #background-music {
-      display: none;
-    }
   </style>
 </head>
 <body>
-  <audio id="background-music" loop>
-    <source src="audio/song.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
   <!-- Progress Dots -->
   <div class="day-progress">
     <div class="progress-dot active"></div> <!-- Rose -->
@@ -71,48 +62,16 @@
         <button class="btn" id="acceptBtn">Accept Teddy</button>
         <button class="btn" id="rejectBtn">Reject Teddy</button>
       </div>
-      <button class="btn previous" id="previousBtn" 
+      <!-- <button class="btn previous" id="previousBtn" 
               onclick="window.location.href='chocolate-day.html'">← Previous</button>
       <button class="btn" id="nextBtn" 
-              onclick="window.location.href='promise-day.html'">Next →</button>
+              onclick="window.location.href='promise-day.html'">Next →</button> -->
+      <button class="btn previous" id="previousBtn" onclick="parent.document.getElementById('contentFrame').src='chocolate-day.html'">← Previous</button>
+      <button class="btn" id="nextBtn" onclick="parent.document.getElementById('contentFrame').src='promise-day.html'">Next →</button>
     </div>
   </div>
 
-  <!-- Firebase App (core) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-
-  <!-- Firebase Firestore (database) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
-  <script src="tracking.js"></script>
   <script>
-    // Play music on user interaction
-    document.addEventListener('click', () => {
-      const music = document.getElementById('background-music');
-      if (music.paused) {
-        music.play();
-      }
-    });
-
-    // Save playback time before leaving the page
-    window.addEventListener('beforeunload', () => {
-      const music = document.getElementById('background-music');
-      localStorage.setItem('musicTime', music.currentTime);
-    });
-
-    // Load saved playback time when the page loads
-    window.onload = () => {
-      const music = document.getElementById('background-music');
-      const savedTime = localStorage.getItem('musicTime');
-
-      if (savedTime) {
-        music.currentTime = parseFloat(savedTime);
-      }
-
-      music.play().catch(() => {
-        console.log("Autoplay blocked. Click anywhere to play the music.");
-      });
-    };
-    
     // Teddy Interactions
     function showNavigation() {
       document.getElementById('previousBtn').style.display = 'inline-block';
@@ -138,7 +97,7 @@
           teddy.style.transform = 'rotateY(360deg)';
           showNavigation();
         }, 300);
-      }, 150); // Delay for intermediate image
+      }, 120); // Delay for intermediate image
     });
 
     document.getElementById('rejectBtn').addEventListener('click', () => {
@@ -159,11 +118,9 @@
           teddy.style.transform = 'rotateY(360deg)';
           showNavigation();
         }, 300);
-      }, 100); // Delay for intermediate image
+      }, 120); // Delay for intermediate image
     });
 
-    // Track page visit
-    trackPageVisit('Teddy Day');
   </script>
 </body>
 </html>

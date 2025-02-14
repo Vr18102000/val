@@ -3,170 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rose Day - Valentine Week</title>
+  <title>Valentine Week - Main</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Rose Petals Animation */
-    .petal {
-      position: absolute;
+    /* Ensure the iframe fills the viewport */
+    #contentFrame {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+
+    /* Play/Pause Button Styling */
+    #playPauseBtn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
       width: 50px;
       height: 50px;
-      background: url('/img/petal.webp');
-      background-size: cover;
-      opacity: 0.8;
-      animation: floatPetals 8s linear infinite;
-      filter: drop-shadow(0 0 5px rgba(255, 20, 147, 0.7));
-      top: -10%;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+      z-index: 1000;
     }
 
-    @keyframes floatPetals {
-      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    #playPauseBtn:hover {
+      transform: scale(1.1);
     }
 
-    @media (max-width: 768px) {
-      .petal {
-        width: 20px;
-        height: 20px;
+    /* Message Box Styling */
+    #musicMessage {
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 1000;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      #playPauseBtn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 15px;
+        left: 15px;
+      }
+      #musicMessage {
+        bottom: 65px;
+        font-size: 14px;
+        padding: 8px 12px;
       }
     }
-
-    /* Rose Image */
-    .rose-img {
-      width: 180px;
-      filter: drop-shadow(0 0 15px rgba(255, 20, 147, 0.5));
-      margin: 1rem 0;
-      transition: transform 0.5s ease;
-    }
-
-    /* Hide the audio element */
-    #background-music {
-      display: none;
-    }
   </style>
+  
+  <!-- Firebase App (the core Firebase SDK) -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script> -->
+  <!-- Firebase Firestore (using compat) -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script> -->
+  <!-- <script src="firebase.js"></script> -->
+
 </head>
 <body>
+  <!-- Persistent Audio -->
   <audio id="background-music" loop>
     <source src="audio/song.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-  <!-- Progress Dots -->
-  <div class="day-progress">
-    <div class="progress-dot active"></div> <!-- Rose -->
-    <div class="progress-dot"></div> <!-- Propose -->
-    <div class="progress-dot"></div> <!-- Chocolate -->
-    <div class="progress-dot"></div> <!-- Teddy -->
-    <div class="progress-dot"></div> <!-- Promise -->
-    <div class="progress-dot"></div> <!-- Hug -->
-    <div class="progress-dot"></div> <!-- Kiss -->
-    <div class="progress-dot"></div> <!-- Valentine -->
-  </div>
 
-  <!-- Rose Petals -->
-  <div class="petal" style="left: 5%; animation-delay: 0s; animation-duration: 6s"></div>
-  <div class="petal" style="left: 15%; animation-delay: 1s; animation-duration: 8s"></div>
-  <div class="petal" style="left: 25%; animation-delay: 2s; animation-duration: 7s"></div>
-  <div class="petal" style="left: 35%; animation-delay: 0.5s; animation-duration: 9s"></div>
-  <div class="petal" style="left: 45%; animation-delay: 1.5s; animation-duration: 6.5s"></div>
-  <div class="petal" style="left: 55%; animation-delay: 2.5s; animation-duration: 7.5s"></div>
-  <div class="petal" style="left: 65%; animation-delay: 0.8s; animation-duration: 8.5s"></div>
-  <div class="petal" style="left: 75%; animation-delay: 1.2s; animation-duration: 7.2s"></div>
-  <div class="petal" style="left: 85%; animation-delay: 2.8s; animation-duration: 6.8s"></div>
-  <div class="petal" style="left: 95%; animation-delay: 0.3s; animation-duration: 9.2s"></div>
+  <!-- Iframe for content pages -->
+  <iframe id="contentFrame" src="rose-day.html"></iframe>
 
-  <!-- Main Content -->
-  <div class="container">
-    <img src="img/rose.jpeg" alt="Animated Rose" class="rose-img">
-    
-    <div class="message">
-      <h2>🌹 Rose Day Special 🌹</h2>
-      <p>"Like this rose, my feelings for you bloom beautifully..."</p>
-    </div>
-    
-    <div class="nav-buttons">
-      <button class="btn" onclick="window.location.href='propose-day.html'">Next →</button>
-    </div>
-  </div>
-  <!-- Firebase App (core) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+  <!-- Play/Pause Button -->
+  <div id="playPauseBtn">🔊</div>
 
-  <!-- Firebase Firestore (database) -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
-  <script src="firebase.js"></script>
+  <!-- Music Message -->
+  <div id="musicMessage">Click here for song 🎵</div>
+
+  <script type="module">
+    // Import Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+
+    // Firebase Config
+    const firebaseConfig = { 
+        apiKey: "AIzaSyA6HQ9tIuO61U2iHHcr1wjH2N3V5R6aHxM",
+        authDomain: "valentine-tracker.firebaseapp.com",
+        projectId: "valentine-tracker",
+        storageBucket: "valentine-tracker.firebasestorage.app",
+        messagingSenderId: "748029057519",
+        appId: "1:748029057519:web:5bd07514618f4b761d7e1a"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Test Firestore Write
+    addDoc(collection(db, "testCollection"), {
+        name: "Test User",
+        timestamp: new Date()
+    }).then(() => console.log("✅ Data written successfully!"))
+    .catch(error => console.error("❌ Error writing to Firestore:", error));
+  </script>
+
   <script>
-    // Play music on user interaction
-    document.addEventListener('click', () => {
-      const music = document.getElementById('background-music');
+    const music = document.getElementById('background-music');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const musicMessage = document.getElementById('musicMessage');
+
+    // Function to play/pause music
+    function toggleMusic() {
       if (music.paused) {
         music.play();
+        playPauseBtn.innerHTML = "⏸️";
+      } else {
+        music.pause();
+        playPauseBtn.innerHTML = "🔊";
       }
-    });
-
-    // Save playback time before leaving the page
-    window.addEventListener('beforeunload', () => {
-      const music = document.getElementById('background-music');
-      localStorage.setItem('musicTime', music.currentTime);
-    });
-
-    // Load saved playback time when the page loads
-    window.onload = () => {
-      const music = document.getElementById('background-music');
-      const savedTime = localStorage.getItem('musicTime');
-
-      if (savedTime) {
-        music.currentTime = parseFloat(savedTime);
-      }
-
-      music.play().catch(() => {
-        console.log("Autoplay blocked. Click anywhere to play the music.");
-      });
-    };
-    
-    // Track page visit
-    trackPageVisit('Rose Day');
-
-    // Track time spent on Rose Day
-    let startTime = Date.now();
-
-    window.addEventListener('beforeunload', () => {
-      logTimeSpent('Rose Day');
-    });
-
-    // Log time when the page is unloaded (closed or navigated away)
-    window.addEventListener('beforeunload', () => {
-      logTimeSpent('Rose Day');
-    });
-
-    // Interactive Petals
-    document.querySelectorAll('.petal').forEach(petal => {
-      petal.addEventListener('click', () => {
-        petal.style.transform = 'scale(1.5) rotate(720deg)';
-        petal.style.opacity = '0';
-        setTimeout(() => {
-          petal.remove();
-        }, 500);
-      });
-    });
-
-    // Continuous Petal Generation
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.classList.add('petal');
-      petal.style.left = `${Math.random() * 100}%`;
-      petal.style.animationDuration = `${6 + Math.random() * 4}s`;
-      petal.style.animationDelay = `${Math.random() * 3}s`;
-      document.body.appendChild(petal);
-      
-      // Remove after animation
-      setTimeout(() => {
-        petal.remove();
-      }, 10000);
     }
 
-    // Generate petals every second
-    setInterval(createPetal, 1000);
+    // Click event to play/pause music
+    playPauseBtn.addEventListener('click', () => {
+      toggleMusic();
+      hideMessage();
+    });
+
+    // Function to hide message permanently
+    function hideMessage() {
+      musicMessage.style.display = "none";
+      localStorage.setItem('musicMessageHidden', "true"); 
+    }
+
+    // Click event on message to play music & hide message
+    musicMessage.addEventListener('click', () => {
+      toggleMusic();
+      hideMessage();
+    });
+
+    // Record the time when the page loads
+    let startTime = Date.now();
+
+    // When the user is about to leave the page
+    window.addEventListener('beforeunload', () => {
+      const timeSpent = Date.now() - startTime; // in milliseconds
+
+      // Write the page view data to Firestore
+      db.collection("pageViews").add({
+        page: window.location.pathname,  // e.g., "/rose-day.html"
+        timeSpent: timeSpent,             // time in ms
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      }).catch(error => console.error("Error logging page view:", error));
+    });
+
+    // ----- Button Click Tracking -----
+    // This will track clicks on any element with class "btn"
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', function() {
+        db.collection("buttonClicks").add({
+          buttonText: this.innerText,
+          page: window.location.pathname,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).catch(error => console.error("Error logging button click:", error));
+      });
+    });
   </script>
 </body>
 </html>
